@@ -1,3 +1,4 @@
-#load "day04.fs"
+#load "day06.fs"
 
-printfn "%d" D04.passes
+
+printfn "%A" (D06.run "06.txt")
