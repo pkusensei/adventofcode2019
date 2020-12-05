@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Library.fs" />
+    <Compile Include="day01.fs" />
+    <Compile Include="day02.fs" />
+    <Compile Include="day03.fs" />
+    <Compile Include="day04.fs" />
+  </ItemGroup>
+</Project>
