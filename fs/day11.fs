@@ -86,10 +86,18 @@ type IntcodeComputer(opcodes: int64 []) =
     member this.OutputQueue = outputQueue
     member this.Complete = complete
 
-    member this.InputAndRun input =
-        inputQueue.Enqueue(int64 input)
+    member this.Run() =
         paused <- false
         operate ip
+
+    member this.InputAndRun input =
+        inputQueue.Enqueue(int64 input)
+        this.Run()
+
+    member this.DumpOutput() =
+        let output = outputQueue |> Array.ofSeq
+        outputQueue.Clear()
+        output
 
 type Direction =
     | Up
