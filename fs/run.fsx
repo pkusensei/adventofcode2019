@@ -1,4 +1,3 @@
-#load "day11.fs"
+#load "day12.fs"
 
-
-printfn "%A" (D11.paintId "11.txt")
+printfn "%A" D12.test6
