@@ -1,8 +1,4 @@
-#load "day14.fs"
+#load "day11.fs"
+#load "day15.fs"
 
-
-printfn "%A" D14.test4
-printfn "%A" D14.test5
-printfn "%A" D14.test6
-
-printfn "%A" (D14.test7 "14.txt")
+printfn "%A" (D15.test1 "15.txt")
