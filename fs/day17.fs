@@ -52,7 +52,7 @@ let run1 path =
     |> Array.concat
     |> Array.choose id
     |> Array.sumBy (fun (x, y) -> x * y)
-
+// 4864
 
 type Direction =
     | North
@@ -146,7 +146,6 @@ let rec walk (row, col) currentDir graph positions =
     match findAdjacentPoundsign (row, col) graph positions with
     | None -> []
     | Some (nextRow, nextCol, nextDir) ->
-
         if Set.contains (nextRow, nextCol) positions then
             []
         else
@@ -162,9 +161,37 @@ let rec walk (row, col) currentDir graph positions =
 
 
 let run2 path =
-    let graph = getGraph path
-    let (row, col, startDir) = findStartPosition graph
-    walk (row, col) startDir graph Set.empty
+    // let graph = getGraph path
+    // let (row, col, startDir) = findStartPosition graph
+    // walk (row, col) startDir graph Set.empty
+    // |> fun x -> String.Join(',', x)
+
+    let seqA = "L,6,L,4,R,12"
+    let seqB = "L,6,R,12,R,12,L,8"
+    let seqC = "L,6,L,10,L,10,L,6"
+    let routine = "A,B,A,C,B,A,C,B,A,C"
+    let feed = "n\n"
+
+    let input =
+        [ routine; seqA; seqB; seqC; feed ]
+        |> fun x -> String.Join('\n', x)
+        |> List.ofSeq
+
+    let computer =
+        File.ReadAllText path
+        |> fun x -> x.Split ',' |> Array.map int64
+        |> fun x ->
+            Array.set x 0 2L
+            x
+        |> D11.IntcodeComputer
+
+    input |> List.iter (int >> computer.InputAndRun)
+
+    while not computer.Complete do
+        computer.Run()
+
+    computer.DumpOutput() |> Array.last
+// 840248
 
 "
 ......#########..............................
